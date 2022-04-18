@@ -18,7 +18,7 @@ public class ShPayment extends AppCompatActivity {
         setContentView(R.layout.activity_sh_payment);
 
 
-        TextView monthlyPayment = (TextView) findViewById(R.id.textView2);
+        TextView monthlyPayment = (TextView) findViewById(R.id.textView2Splash);
         ImageView img = (ImageView) findViewById(R.id.imageView2);
 
         SharedPreferences SharedPref = PreferenceManager.getDefaultSharedPreferences(this);

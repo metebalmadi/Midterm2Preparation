@@ -15,7 +15,7 @@
             android:layout_margin="10dp">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/textViewSplash"
                 android:layout_width="147dp"
                 android:layout_height="match_parent"
                 android:text="@string/product_id"

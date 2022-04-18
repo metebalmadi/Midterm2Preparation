@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
         Button bttnToDB = (Button) findViewById(R.id.bttnToDB);
         Button bttnToToast = (Button) findViewById(R.id.bttnToToast);
         Button bttnToWeather = (Button) findViewById(R.id.bttnToWeather);
+        Button bttnToSplash = (Button) findViewById(R.id.bttnToSplash);
+
 
         bttnToGrid.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +70,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, WeatherAPI.class));
+            }
+        });
+
+        bttnToSplash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, SplashV2.class));
             }
         });
 
