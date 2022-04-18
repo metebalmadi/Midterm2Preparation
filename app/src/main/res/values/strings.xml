@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Midterm2Preparation</string>
+    <string name="imgLarge">Endagered Species</string>
+
+    <string name="imgSail">Sailing Image</string>
+    <string name="txtTitle">Sailing Adventures in Hawaii</string>
+    <string name="bttnDate">Choose the desired date</string>
+    <string name="TextDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</string>
+
+    <string name="bttnStart">Start Animation</string>
+    <string name="bttnStop">Start Tween</string>
+
+
+    <string name="product_id">Product ID</string>
+    <string name="product_name">Product Name</string>
+    <string name="product_quantity">Quantity</string>
+    <string name="not_assigned">Not assigned</string>
+    <string name="product_review">Product Review</string>
+
+
+    <string-array name="city">
+        <item>riyadh</item>
+        <item>london</item>
+        <item>munich</item>
+    </string-array>
+
+</resources>
