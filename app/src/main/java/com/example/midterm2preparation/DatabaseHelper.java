@@ -12,9 +12,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "users.db";
     public static final String TABLE_NAME = "users_data";
     public static final String COL1 = "ID";
-    public static final String COL2 = "PRODUCT_NAME";
-    public static final String COL3 = "PRODUCT_QUANTITY";
-    public static final String COL4 = "PRODUCT_REVIEW";
+    public static final String COL2 = "NAME";
+    public static final String COL3 = "EMAIL";
+    public static final String COL4 = "PHONE";
 
     /* Constructor */
     public DatabaseHelper(Context context) {
@@ -26,7 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String createTable = "CREATE TABLE " + TABLE_NAME +
                 " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                " PRODUCT_NAME TEXT, PRODUCT_QUANTITY TEXT, PRODUCT_REVIEW TEXT)";
+                " NAME TEXT, EMAIL TEXT, PHONE TEXT)";
         db.execSQL(createTable);
     }
 
@@ -41,12 +41,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
        here, must be in accordance with those in
        the onCreate method above.
     */
-    public boolean addData(String productName, String productQuantity, String productReview) {
+    public boolean addData(String name, String email, String phone) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL2, productName);
-        contentValues.put(COL3, productQuantity);
-        contentValues.put(COL4, productReview);
+        contentValues.put(COL2, name);
+        contentValues.put(COL3, email);
+        contentValues.put(COL4, phone);
 
         long result = db.insert(TABLE_NAME, null, contentValues);
 
@@ -55,11 +55,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /* Returns only one result */
-    public Cursor structuredQuery(String productName) {
+    public Cursor structuredQuery(String name) {
         SQLiteDatabase db = this.getReadableDatabase(); // No need to write
         Cursor cursor = db.query(TABLE_NAME, new String[]{COL1,
                         COL2, COL3, COL4}, COL2 + "=?",
-                new String[]{productName}, null, null, null, null);
+                new String[]{name}, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
         return cursor;
@@ -67,9 +67,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    public Cursor getSpecificProduct(String productName){
+    public Cursor getSpecificProduct(String name){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor data = db.rawQuery("SELECT * FROM " + TABLE_NAME+" where productName=\""+productName+"\"",null);
+        Cursor data = db.rawQuery("SELECT * FROM " + TABLE_NAME+" where name=\""+name+"\"",null);
         return data;
     }
 
@@ -81,8 +81,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // delete a specific row by id
-    public boolean deleteData(String product_id) {
+    public boolean deleteData(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(TABLE_NAME, COL1 + "=" + product_id, null) > 0;
+        return db.delete(TABLE_NAME, COL1 + "=" + id, null) > 0;
     }
 }

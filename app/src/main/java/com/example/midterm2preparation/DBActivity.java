@@ -14,12 +14,12 @@ public class DBActivity extends AppCompatActivity {
 
 
     DatabaseHelper myDB;
-    EditText productQuantity, productName, productReview;
-    TextView productID, ViewDB;
+    EditText email, name, phone;
+    TextView txtID, ViewDB;
 
-    String prodName;
-    String prodQuan;
-    String prodReview;
+    String pname;
+    String pemail;
+    String pPhone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +36,10 @@ public class DBActivity extends AppCompatActivity {
 
         myDB = new DatabaseHelper(this);
 
-        productID = (TextView) findViewById(R.id.productID);
-        productQuantity = (EditText) findViewById(R.id.productQuantity);
-        productName = (EditText) findViewById(R.id.productName);
-        productReview = (EditText) findViewById(R.id.productReview);
+        txtID = (TextView) findViewById(R.id.productID);
+        email = (EditText) findViewById(R.id.productQuantity);
+        name = (EditText) findViewById(R.id.productName);
+        phone = (EditText) findViewById(R.id.productReview);
 
         ViewDB = (TextView) findViewById(R.id.txtViewDB);
 
@@ -47,19 +47,19 @@ public class DBActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                prodName = productName.getText().toString();
-                prodQuan = productQuantity.getText().toString();
-                prodReview = productReview.getText().toString();
+                pname = name.getText().toString();
+                pemail = email.getText().toString();
+                pPhone = phone.getText().toString();
 
 
-                if (prodName.equals("") || prodQuan.equals("") || prodReview.equals(""))
+                if (pname.equals("") || pemail.equals("") || pPhone.equals(""))
                 {
                     Toast.makeText(DBActivity.this,
                             "Fields are empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if (!myDB.addData(prodName, prodQuan, prodReview))
+                if (!myDB.addData(pname, pemail, pPhone))
                     Toast.makeText(DBActivity.this,
                             "Insertion Failed", Toast.LENGTH_SHORT).show();
                 else
@@ -74,9 +74,9 @@ public class DBActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                prodName = productName.getText().toString();
+                pname = name.getText().toString();
 
-                if (prodName.equals(""))
+                if (pname.equals(""))
                 {
                     Toast.makeText(DBActivity.this,
                             "Product Name field is empty",
@@ -84,15 +84,15 @@ public class DBActivity extends AppCompatActivity {
                     return;
                 }
 
-                Cursor cursor = myDB.structuredQuery(prodName);
+                Cursor cursor = myDB.structuredQuery(pname);
                 String cID = cursor.getString(0);
                 String cName = cursor.getString(1);
                 String cPrQuant = cursor.getString(2);
                 String cReview = cursor.getString(3);
 
-                productID.setText(cID);
-                productQuantity.setText(cPrQuant);
-                productReview.setText(cReview);
+                txtID.setText(cID);
+                email.setText(cPrQuant);
+                phone.setText(cReview);
 
 
 
@@ -107,11 +107,11 @@ public class DBActivity extends AppCompatActivity {
 
                 while(cur.moveToNext()){
                     buffer.append("ID: "+cur.getString(0)+"\n");
-                    buffer.append("Product Name: "+cur.getString(1)+"\n");
-                    buffer.append("Quantity: "+cur.getString(2)+"\n");
-                    buffer.append("Review: "+cur.getString(3)+"\n\n");
+                    buffer.append("Name: "+cur.getString(1)+"\n");
+                    buffer.append("Email: "+cur.getString(2)+"\n");
+                    buffer.append("Phone: "+cur.getString(3)+"\n\n");
                 }
-                ViewDB.setText(buffer.toString());
+              ViewDB.setText(buffer.toString());
 //            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 //            builder.setCancelable(true);
 //            builder.setTitle("All Emplpyees");
@@ -126,7 +126,7 @@ public class DBActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String prodID = productID.getText().toString();
+                String prodID = txtID.getText().toString();
 
                 if (prodID.equals(""))
                 {
@@ -144,10 +144,10 @@ public class DBActivity extends AppCompatActivity {
                     Toast.makeText(DBActivity.this,
                             "Could not Delete", Toast.LENGTH_SHORT).show();
                 }
-                productID.setText("");
-                productName.setText("");
-                productQuantity.setText("");
-                productReview.setText("");
+                txtID.setText("");
+                name.setText("");
+                email.setText("");
+                phone.setText("");
 
             }
         });
